@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Principal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #ffffff; /* Fondo blanco */
+    }
+
+    .logo {
+      width: 220px; /* Logo más grande */
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px 0;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 220px;
+      transition: 0.3s;
+    }
+
+    /* Botón Iniciar Sesión (rojo vino) */
+    .btn-login {
+      background-color: #800020; 
+      color: white;
+      border: none;
+    }
+    .btn-login:hover {
+      background-color: #a00028;
+    }
+
+    /* Botón Registrarte (blanco con borde rojo vino) */
+    .btn-register {
+      background-color: white;
+      color: #800020;
+      border: 2px solid #800020;
+    }
+    .btn-register:hover {
+      background-color: #f8f8f8;
+    }
+
+    .privacy {
+      position: absolute;
+      bottom: 20px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .privacy a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .privacy a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo" class="logo">
+
+  <!-- Botones -->
+  <button class="btn btn-login">Iniciar Sesión</button>
+  <button class="btn btn-register">Registrarte</button>
+
+  <!-- Políticas -->
+  <div class="privacy">
+    <a href="politicas.pdf" target="_blank">Políticas de Privacidad</a>
+  </div>
+</body>
+</html>
