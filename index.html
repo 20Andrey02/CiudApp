@@ -1,86 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Página Principal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
+      background-color: #fff;
+    }
+
+    /* Header */
+    header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      background-color: #ffffff; /* Fondo blanco */
+      padding: 15px 30px;
+      background-color: #800020; /* rojo vino */
+      color: white;
     }
 
     .logo {
-      width: 220px; /* Logo más grande */
-      margin-bottom: 30px;
+      height: 60px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); /* sombra para destacar */
     }
 
-    .btn {
-      display: block;
-      margin: 10px 0;
-      padding: 12px 25px;
-      font-size: 16px;
+    .buttons {
+      display: flex; /* en fila */
+      gap: 10px;     /* espacio entre botones */
+    }
+
+    .buttons button {
+      padding: 10px 18px;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
-      width: 220px;
-      transition: 0.3s;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Botón Iniciar Sesión (rojo vino) */
     .btn-login {
-      background-color: #800020; 
+      background-color: #fff;
+      color: #800020;
+      border: 2px solid #fff;
+    }
+
+    .btn-register {
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+
+    .btn-login:hover, .btn-register:hover {
+      opacity: 0.9;
+    }
+
+    /* Carrusel - estilos unificados y funcionales */
+    .carousel {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      position: relative; /* para posicionar flechas */
+      background: #000; /* fondo por si tarda en cargar la imagen */
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 400px;       /* altura tipo banner */
+      object-fit: cover;   /* recorta sin deformar */
+      display: none;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    /* Flechas de navegación */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.35);
       color: white;
       border: none;
-    }
-    .btn-login:hover {
-      background-color: #a00028;
-    }
-
-    /* Botón Registrarte (blanco con borde rojo vino) */
-    .btn-register {
-      background-color: white;
-      color: #800020;
-      border: 2px solid #800020;
-    }
-    .btn-register:hover {
-      background-color: #f8f8f8;
+      padding: 10px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
     }
 
-    .privacy {
+    .carousel-nav:hover { background: rgba(0,0,0,0.6); }
+    .carousel-nav.prev { left: 12px; }
+    .carousel-nav.next { right: 12px; }
+
+    /* Indicadores (puntos) */
+    .carousel-indicators {
       position: absolute;
-      bottom: 20px;
-      font-size: 12px;
-      color: #555;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
     }
 
-    .privacy a {
+    .carousel-indicators button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .carousel-indicators button.active {
+      background: rgba(255,255,255,0.95);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .carousel img { height: 240px; }
+    }
+
+    /* Info */
+    .info {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: white;
+      font-size: 20px;
       text-decoration: none;
-      color: inherit;
     }
 
-    .privacy a:hover {
-      text-decoration: underline;
+    .social-icons a:hover {
+      color: #800020;
     }
   </style>
 </head>
 <body>
-  <!-- Logo -->
-  <img src="logo.png" alt="Logo" class="logo">
+  <!-- Header -->
+  <header>
+    <!-- Logo en la carpeta imagen -->
+    <img src="imagen/logo.png" alt="Logo" class="logo">
+    <div class="buttons">
+      <button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</button>
+      <button class="btn-register"><i class="fa-solid fa-user-plus"></i> Registrarte</button>
+    </div>
+  </header>
 
-  <!-- Botones -->
-  <button class="btn btn-login">Iniciar Sesión</button>
-  <button class="btn btn-register">Registrarte</button>
+  <!-- Info -->
+  <section class="info">
+    <h2>Bienvenido a CiudApp</h2>
+    <p>Aquí puedes encontrar información sobre cómo funciona nuestro sistema y sus beneficios.</p>
+  </section>
 
-  <!-- Políticas -->
-  <div class="privacy">
-    <a href="politicas.pdf" target="_blank">Políticas de Privacidad</a>
+  <!-- Carrusel (imagenes dentro de la carpeta imagen) -->
+  <div class="carousel" aria-roledescription="carousel">
+    <img src="imagen/imagen1.png" class="active" alt="Imagen 1">
+    <img src="imagen/imagen2.png" alt="Imagen 2">
+    <img src="imagen/imagen3.png" alt="Imagen 3">
+
+    <!-- Flechas -->
+    <button class="carousel-nav prev" aria-label="Anterior">&#10094;</button>
+    <button class="carousel-nav next" aria-label="Siguiente">&#10095;</button>
+
+    <!-- Indicadores -->
+    <div class="carousel-indicators" aria-hidden="false"></div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+    <!-- PDF en la carpeta pdf -->
+    <p><a href="pdf/politicas.pdf" target="_blank" style="color:white;">Políticas de Privacidad</a></p>
+    <p>&copy; 2025 CiudApp. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script funcional para el carrusel -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carousel = document.querySelector('.carousel');
+      if (!carousel) return;
+
+      const images = Array.from(carousel.querySelectorAll('img'));
+      if (images.length === 0) return;
+
+      const prevBtn = carousel.querySelector('.carousel-nav.prev');
+      const nextBtn = carousel.querySelector('.carousel-nav.next');
+      const indicatorsContainer = carousel.querySelector('.carousel-indicators');
+
+      // Crear indicadores según imágenes
+      images.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.setAttribute('aria-label', 'Ir a la imagen ' + (i + 1));
+        if (i === 0) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          goTo(i);
+          restartTimer();
+        });
+        indicatorsContainer.appendChild(btn);
+      });
+
+      const indicators = Array.from(indicatorsContainer.children);
+
+      let current = images.findIndex(img => img.classList.contains('active'));
+      if (current === -1) current = 0;
+
+      // Asegurar estado inicial
+      images.forEach((img, i) => img.classList.toggle('active', i === current));
+      indicators.forEach((dot, i) => dot.classList.toggle('active', i === current));
+
+      function show(index) {
+        images[current].classList.remove('active');
+        indicators[current].classList.remove('active');
+        current = index;
+        images[current].classList.add('active');
+        indicators[current].classList.add('active');
+      }
+
+      function next() {
+        show((current + 1) % images.length);
+      }
+
+      function prev() {
+        show((current - 1 + images.length) % images.length);
+      }
+
+      function goTo(i) { show(i); }
+
+      // Eventos botones
+      if (nextBtn) nextBtn.addEventListener('click', () => { next(); restartTimer(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); restartTimer(); });
+
+      // Teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { next(); restartTimer(); }
+        if (e.key === 'ArrowLeft') { prev(); restartTimer(); }
+      });
+
+      // Autoplay con pausa al hover
+      let timer = setInterval(next, 3000);
+      function restartTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 3000);
+      }
+
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', () => { timer = setInterval(next, 3000); });
+
+      // Exponer funciones (opcional)
+      window.__ciudapp_carousel = { next, prev, goTo: (i) => show(i) };
+    });
+  </script>
 </body>
 </html>
